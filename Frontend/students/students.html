@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="add-student-section">
+        <h2>Add Student</h2>
+        <form id="student-form">
+            <input type="hidden" id="id" readonly>  <!-- Додано приховане поле для id, яке є нередагованим -->
+            <input type="text" id="group" placeholder="Group" required>
+            <input type="text" id="first_name" placeholder="First Name" required>
+            <input type="text" id="last_name" placeholder="Last Name" required>
+            <input type="number" id="score" placeholder="Score" required>
+            <button type="submit">Add or Update Student</button>
+        </form>
+    </div>
+
+    <h1>Students List</h1>
+    <table id="students-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Group</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody id="students-list">
+            <!-- Сюди буде вставлено список студентів -->
+        </tbody>
+    </table>
+
+    <!-- Підключення скрипта students.js -->
+    <script src="students/students.js"></script>
+</body>
+</html>
