@@ -1,8 +1,9 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, abort
 from flask_cors import CORS
+import os
 
 # Імпорт необхідних файлів для Students
-from Backend.Models.students_model import initialize_students_db
+from Models.students_model import initialize_students_db
 from API.students_api import students_api as students_api
 from API.students_route import students_route
 
@@ -29,7 +30,20 @@ def index():
 # Забезпечення доступу браузера до статичних даних (image, *.js, тощо)
 @app.route('/<path:path>')
 def send_js(path):
-    return send_from_directory(app.static_folder, path)
+    # Перевірка на недопустимі символи у шляху
+    if '..' in path or path.startswith('/'):
+        # Забороняємо доступ до шляху, якщо він містить небезпечні символи
+        abort(404)
+
+    # Формуємо абсолютний шлях до файлу для безпечного доступу
+    safe_path = os.path.abspath(os.path.join(students_route.static_folder, path))
+
+    # Перевіряємо, чи знаходиться файл дійсно у дозволеній директорії
+    if not safe_path.startswith(os.path.abspath(students_route.static_folder)):
+        abort(404)
+
+    # Відправляємо файл за безпечним шляхом
+    return send_from_directory(students_route.static_folder, path)
 
 
 # Запуск сервера в режимі тестування

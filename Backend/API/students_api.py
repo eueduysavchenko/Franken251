@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from Backend.Models.students_model import Student
+from Models.students_model import Student
 
 students_api = Blueprint('students_api', __name__)
 

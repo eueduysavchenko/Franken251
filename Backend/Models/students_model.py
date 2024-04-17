@@ -1,7 +1,11 @@
+import os
 from peewee import Model, CharField, FloatField, AutoField, SqliteDatabase
 
 # Ініціалізація шляху до даних
-db = SqliteDatabase('../Data/students.db')
+# (використовуємо шлях поточного фаулй для забезпечення однакової роботи в різних середовищах)
+app_dir = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(app_dir, '../../Data', 'students.db')
+db = SqliteDatabase(db_path)
 
 
 # Опис моделі
