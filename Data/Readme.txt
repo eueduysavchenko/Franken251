@@ -1,0 +1,1 @@
+Data folder to store SQLite database and other files
