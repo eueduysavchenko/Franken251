@@ -1,0 +1,24 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+#container {
+    display: flex;
+}
+
+#add-student {
+    flex: 1;
+    background-color: lightblue;
+}
+#students-grid {
+    flex: 3;
+    background-color: lightcoral;
+}
