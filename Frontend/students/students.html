@@ -9,14 +9,28 @@
 <body>
     <div id="container">
         <div id="add-student" class="add-student-section">
-            <h2>Add Student</h2>
+            <h1>Add Student</h1>
             <form id="student-form">
                 <input type="hidden" id="id" readonly>
-                <input type="text" id="group" placeholder="Group" required>
-                <input type="text" id="first_name" placeholder="First Name" required>
-                <input type="text" id="last_name" placeholder="Last Name" required>
-                <input type="number" id="score" placeholder="Score" required>
-                <button type="submit">Add or Update Student</button>
+                <div class="form-group">
+                    <label for="group">Group:</label>
+                    <input type="text" id="group" name="group" placeholder="Group" required>
+                </div>
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="score">Score:</label>
+                    <input type="number" id="score" name="score" placeholder="Score" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Add or Update Student</button>
+                </div>
             </form>
         </div>
         <div id="students-grid">
@@ -37,7 +51,6 @@
             </table>
         </div>
     </div>
-
 
     <!-- Підключення скрипта students.js -->
     <script src="students/students.js"></script>

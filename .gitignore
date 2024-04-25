@@ -1,3 +1,4 @@
 /Data/students.db
 *.iml
 misc.xml
+**/.idea
