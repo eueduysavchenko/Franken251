@@ -3,13 +3,13 @@
 #container {
     display: flex;
 }
-#add-student {
+#add-task {
     flex: 1;
     background-color: lightblue;
     border-radius: 8px;
     padding: 20px;
 }
-#students-grid {
+#tasks-table-container {
     flex: 3;
     background-color: lightcoral;
     border-radius: 8px;
@@ -19,8 +19,8 @@ h1 {
   text-align: center;
 }
 
-/* Add new student form */
-.add-student-section {
+/* Add new task form */
+.add-task-section {
   width: fit-content;
   margin: auto;
 }
@@ -40,7 +40,7 @@ input, button {
     border-radius: 8px;
 }
 
-/* Students table */
+/* Tasks table */
 table {
     border-collapse: collapse;
     width: 100%;

@@ -2,10 +2,10 @@ from flask import Flask, send_from_directory, abort
 from flask_cors import CORS
 import os
 
-# Імпорт необхідних файлів для Students
-from Models.students_model import initialize_students_db
-from API.students_api import students_api as students_api
-from API.students_route import students_route
+# Імпорт необхідних файлів для Tasks
+from Models.task_model import initialize_tasks_db
+from API.tasks_api import tasks_api as tasks_api
+from API.tasks_route import tasks_route
 
 # Ініціалізація app та шляху до статичних даних
 app = Flask(__name__, static_folder='../Frontend')
@@ -14,11 +14,11 @@ app = Flask(__name__, static_folder='../Frontend')
 CORS(app)
 
 # Ініціалізація бази даних
-initialize_students_db()
+initialize_tasks_db()
 
 # Реєстрація Blueprints для API та Навігції FrontEnd в браузері
-app.register_blueprint(students_api, url_prefix='/api')
-app.register_blueprint(students_route)
+app.register_blueprint(tasks_api, url_prefix='/api')
+app.register_blueprint(tasks_route)
 
 
 # Точка входу, index.html
@@ -36,14 +36,14 @@ def send_js(path):
         abort(404)
 
     # Формуємо абсолютний шлях до файлу для безпечного доступу
-    safe_path = os.path.abspath(os.path.join(students_route.static_folder, path))
+    safe_path = os.path.abspath(os.path.join(tasks_route.static_folder, path))
 
     # Перевіряємо, чи знаходиться файл дійсно у дозволеній директорії
-    if not safe_path.startswith(os.path.abspath(students_route.static_folder)):
+    if not safe_path.startswith(os.path.abspath(tasks_route.static_folder)):
         abort(404)
 
     # Відправляємо файл за безпечним шляхом
-    return send_from_directory(students_route.static_folder, path)
+    return send_from_directory(tasks_route.static_folder, path)
 
 
 # Запуск сервера в режимі тестування
