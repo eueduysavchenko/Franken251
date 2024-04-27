@@ -18,11 +18,15 @@
 h1 {
   text-align: center;
 }
+button {
+    cursor: pointer;
+    border-radius: 8px;
+}
 
 /* Add new task form */
 .add-task-section {
-  width: fit-content;
-  margin: auto;
+    width: fit-content;
+    margin: auto;
 }
 .form-group {
     display: flex;
@@ -34,10 +38,14 @@ h1 {
     text-align: right;
     margin-right: 10px; /* Add some space between the label and the input */
 }
-input, button {
+input {
     padding: 8px;
     flex-grow: 1; /* Allow input to take up remaining space */
-    border-radius: 8px;
+
+}
+button.add-create-button {
+    padding: 8px;
+    flex-grow: 1; /* Allow input to take up remaining space */
 }
 
 /* Tasks table */
@@ -45,11 +53,20 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-th, td {
+th {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+    background-color: #ce8383;
+}
+td {
     border: 1px solid black;
     padding: 8px;
     text-align: left;
 }
-th {
-    background-color: #f2f2f2;
+td.table-button-cell {
+    border: 1px solid black;
+}
+button.table-button {
+    padding: 4px;
 }

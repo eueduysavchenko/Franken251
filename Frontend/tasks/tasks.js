@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${task.title}</td>
                         <td>${task.description}</td>
                         <td>${task.status}</td>
+                        <td class="table-button-cell"><button class="table-button">❌</button></td>
                     `;
                 });
             });
