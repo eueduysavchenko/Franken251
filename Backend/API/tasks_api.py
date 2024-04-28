@@ -7,17 +7,36 @@ tasks_api = Blueprint('tasks_api', __name__)
 @tasks_api.route('/tasks', methods=['GET'])
 def get_tasks():
     tasks = [task for task in Task.select()]
-    return jsonify([
-        {'id': task.id, 'person': task.person, 'title': task.title,
-         'description': task.description, 'status': task.status}
+    return jsonify([{
+        'id': task.id,
+        'person': task.person,
+        'title': task.title,
+        'description': task.description,
+        'status': task.status
+    }
         for task in tasks
     ])
 
+@tasks_api.route('/tasks/<int:task_id>', methods=['GET'])
+def get_task(task_id):
+    try:
+        task = Task.get_by_id(task_id)
+        return jsonify({
+            'id': task.id,
+            'person': task.person,
+            'title': task.title,
+            'description': task.description,
+            'status': task.status
+        })
+    except Task.DoesNotExist:
+        return jsonify({'success': False, 'message': 'Task not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 @tasks_api.route('/tasks', methods=['POST'])
-def add_or_update_task():
+def add_task():
     data = request.get_json()
-
     #  Перевіряємо чи переданий ID, це ключове поле яке не може бути пустим
     task_id = int(data.get('id')) if 'id' in data and data['id'] else None
 
@@ -53,3 +72,5 @@ def delete_task(task_id):
         return jsonify({'success': True, 'message': 'Task deleted successfully'})
     except Task.DoesNotExist:
         return jsonify({'success': False, 'message': 'Task not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

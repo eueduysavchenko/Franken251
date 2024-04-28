@@ -67,6 +67,6 @@ td {
 td.table-button-cell {
     border: 1px solid black;
 }
-button.delete-task-button {
+button.table-button {
     padding: 4px;
 }

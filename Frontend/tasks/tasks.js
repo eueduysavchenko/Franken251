@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${task.title}</td>
                         <td>${task.description}</td>
                         <td>${task.status}</td>
-                        <td class="table-button-cell"><button class="delete-task-button" data-id="${task.id}">❌</button></td>
+                        <td class="table-button-cell">
+                            <button class="table-button delete-task-button" data-id="${task.id}">❌</button>
+                            <button class="table-button update-task-button" data-id="${task.id}">✍️</button>
+                        </td>
                     `;
                 });
             });
@@ -79,7 +82,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     alert(data.message);
                 }
+            })
+            .catch(error => console.error('Error:', error));
+    });
 
+        // EventHandler для форми оновлення завдання
+    document.getElementById('tasks-list').addEventListener('click', function (e) {
+        const btn = e.target.closest('.update-task-button');
+        if (!btn) return;
+        const {id} = btn.dataset;
+        // Відправляємо дані на сервер для додавання або оновлення студента
+        fetch(`/api/tasks/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Task not found');
+            }
+                return response.json();
+            })
+            .then(task => {
+                document.getElementById('id').value = task.id;
+                document.getElementById('person').value = task.person;
+                document.getElementById('title').value = task.title;
+                document.getElementById('description').value = task.description;
+                document.getElementById('status').value = task.status;
             })
             .catch(error => console.error('Error:', error));
     });
