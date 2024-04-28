@@ -43,7 +43,7 @@ input {
     flex-grow: 1; /* Allow input to take up remaining space */
 
 }
-button.add-create-button {
+.form-group button {
     padding: 8px;
     flex-grow: 1; /* Allow input to take up remaining space */
 }
