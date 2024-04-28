@@ -22,7 +22,7 @@ function setupUpdateButton() {
 }
 
 function submitForm() {
-    const id = document.getElementById('id').value;  // Отримуємо ID, якщо воно вказано
+    const id = document.getElementById('task-id').value;  // Отримуємо ID, якщо воно вказано
     const person = document.getElementById('person').value;
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
@@ -45,7 +45,7 @@ function submitForm() {
 function addTask(data) {
     console.log('Adding task:', data);
     // Відправляємо дані на сервер для додавання завдання
-    fetch('/api/tasks', {
+    fetch('/api/task', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -61,10 +61,10 @@ function addTask(data) {
     .catch(error => console.error('Error:', error));
 }
 
-function updateTask(id, data) {
-    console.log('Updating task:', id, data);
+function updateTask(task_id, data) {
+    console.log('Updating task:', task_id, data);
         // Відправляємо дані на сервер для додавання завдання
-    fetch(`/api/update-task/${id}`, {
+    fetch(`/api/update-task/${task_id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -79,9 +79,9 @@ function updateTask(id, data) {
     .catch(error => console.error('Error:', error));
 }
 
-function loadUpdateForm(id) {
-    console.log('Loading task data to update:', id);
-    fetch(`/api/tasks/${id}`, {
+function loadUpdateForm(task_id) {
+    console.log('Loading task data to update:', task_id);
+    fetch(`/api/tasks/${task_id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ function loadUpdateForm(id) {
             return response.json();
         })
         .then(task => {
-            document.getElementById('id').value = task.id;
+            document.getElementById('task-id').value = task.id;
             document.getElementById('person').value = task.person;
             document.getElementById('title').value = task.title;
             document.getElementById('description').value = task.description;
@@ -106,8 +106,8 @@ function loadUpdateForm(id) {
         .catch(error => console.error('Error:', error));
 }
 
-function deleteTask(id) {
-    fetch(`/api/tasks/${id}`, {
+function deleteTask(task_id) {
+    fetch(`/api/delete-task/${task_id}`, {
         method: 'DELETE',
     })
         .then(response => response.json())
@@ -152,7 +152,7 @@ function resetAddUpdateForm() {
     // Очищаємо форму після додавання студента
     document.getElementById('task-form').reset();
     // Видаляємо значення ID для уникнення непередбачуваної поведінки
-    document.getElementById('id').value = '';
+    document.getElementById('task-id').value = '';
     validateForm();
 }
 
