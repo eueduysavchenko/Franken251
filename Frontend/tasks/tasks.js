@@ -58,14 +58,26 @@ function addTask(data) {
         loadTasksTable();
     })
     .catch(error => console.error('Error:', error));
-    // setupAddButton(); // Reset button to 'Add'
 }
 
 function updateTask(id, data) {
     console.log('Updating task:', id, data);
-    resetAddUpdateForm();
-    setupFormTitle();
-    setupAddButton(); // Reset button to 'Add'
+        // Відправляємо дані на сервер для додавання завдання
+    fetch(`/api/update-task/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(() => {
+        resetAddUpdateForm();
+        setupFormTitle();
+        setupAddButton();
+        loadTasksTable();
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 function loadUpdateForm(id) {

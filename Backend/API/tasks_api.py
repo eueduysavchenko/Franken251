@@ -74,3 +74,20 @@ def delete_task(task_id):
         return jsonify({'success': False, 'message': 'Task not found'}), 404
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@tasks_api.route('/update-task/<int:task_id>', methods=['PATCH'])
+def update_task(task_id):
+    try:
+        data = request.get_json()
+        task = Task.get(Task.id == task_id)
+        task.person = data.get('person', task.person)
+        task.title = data.get('title', task.title)
+        task.description = data.get('description', task.description)
+        task.status = data.get('status', task.status)
+
+        task.save()
+        return jsonify({'success': True, 'message': 'Task updated successfully'})
+    except Task.DoesNotExist:
+        return jsonify({'success': False, 'message': 'Task not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
