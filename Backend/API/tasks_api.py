@@ -44,3 +44,12 @@ def add_or_update_task():
         'id': task.id, 'person': task.person, 'title': task.title,
         'description': task.description, 'status': task.status
     }), 200 if task_id else 201
+
+@tasks_api.route('/tasks/<task_id>', methods=['DELETE'])
+def delete_task(task_id):
+    try:
+        task = Task.get(Task.id == task_id)
+        task.delete_instance()
+        return jsonify({'success': True, 'message': 'Task deleted successfully'})
+    except Task.DoesNotExist:
+        return jsonify({'success': False, 'message': 'Task not found'}), 404

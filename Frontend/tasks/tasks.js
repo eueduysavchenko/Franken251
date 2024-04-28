@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${task.title}</td>
                         <td>${task.description}</td>
                         <td>${task.status}</td>
-                        <td class="table-button-cell"><button class="table-button">❌</button></td>
+                        <td class="table-button-cell"><button class="delete-task-button" data-id="${task.id}">❌</button></td>
                     `;
                 });
             });
@@ -61,4 +61,28 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error:', error));
     });
+
+    // EventHandler для форми видалення завдання
+    document.getElementById('tasks-list').addEventListener('click', function (e) {
+        const btn = e.target.closest('.delete-task-button');
+        if (!btn) return;
+        const {id} = btn.dataset;
+        // Відправляємо дані на сервер для додавання або оновлення студента
+        fetch(`/api/tasks/${id}`, {
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    // Оновлюємо список студентів на сторінці
+                    loadTasks();
+                } else {
+                    alert(data.message);
+                }
+
+            })
+            .catch(error => console.error('Error:', error));
+    });
 });
+
+
