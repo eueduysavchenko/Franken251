@@ -3,6 +3,7 @@ function createButton(text, onClickFunction) {
     button.type = 'button';
     button.innerText = text;
     button.onclick = onClickFunction;
+    button.id = 'add-update-form-button'
     return button;
 }
 
@@ -73,8 +74,6 @@ function updateTask(id, data) {
     .then(response => response.json())
     .then(() => {
         resetAddUpdateForm();
-        setupFormTitle();
-        setupAddButton();
         loadTasksTable();
     })
     .catch(error => console.error('Error:', error));
@@ -100,10 +99,11 @@ function loadUpdateForm(id) {
             document.getElementById('title').value = task.title;
             document.getElementById('description').value = task.description;
             document.getElementById('status').value = task.status;
+
+            setupFormTitle(false);
+            setupUpdateButton(); // Change button to 'Update'
         })
         .catch(error => console.error('Error:', error));
-    setupFormTitle(false);
-    setupUpdateButton(); // Change button to 'Update'
 }
 
 function deleteTask(id) {
@@ -153,16 +153,32 @@ function resetAddUpdateForm() {
     document.getElementById('task-form').reset();
     // Видаляємо значення ID для уникнення непередбачуваної поведінки
     document.getElementById('id').value = '';
+    validateForm();
 }
 
 function setupFormTitle(isAddTask = true) {
     document.getElementById('form-title').innerText = isAddTask ? "Add Task" : "Update Task";
 }
 
+function validateForm() {
+    // Check if all required fields are filled
+    const person = document.getElementById('person').value.trim();
+    const title = document.getElementById('title').value.trim();
+    const description = document.getElementById('description').value.trim();
+    const status =  document.getElementById('status').value.trim();
+    const isFormValid = person && title && description && status; // Simple truthy check
+
+    // Enable or disable the button based on the form validity
+    document.getElementById('add-update-form-button').disabled = !isFormValid;
+}
+
+document.getElementById('task-form').addEventListener('input', validateForm);
+
 // Initial setup
 window.onload = function() {
     setupFormTitle();
     setupAddButton();
+    validateForm()
     loadTasksTable();
 };
 
