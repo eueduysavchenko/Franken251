@@ -34,7 +34,7 @@ def get_task(task_id):
         return jsonify({'error': str(e)}), 500
 
 
-@tasks_api.route('/task', methods=['POST'])
+@tasks_api.route('/tasks', methods=['POST'])
 def add_task():
     data = request.get_json()
     #  Перевіряємо чи переданий ID, це ключове поле яке не може бути пустим
@@ -64,7 +64,7 @@ def add_task():
         'description': task.description, 'status': task.status
     }), 200 if task_id else 201
 
-@tasks_api.route('/delete-task/<task_id>', methods=['DELETE'])
+@tasks_api.route('/tasks/delete-task/<task_id>', methods=['DELETE'])
 def delete_task(task_id):
     try:
         task = Task.get(Task.id == task_id)
@@ -75,7 +75,7 @@ def delete_task(task_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@tasks_api.route('/update-task/<int:task_id>', methods=['PATCH'])
+@tasks_api.route('/tasks/update-task/<int:task_id>', methods=['PATCH'])
 def update_task(task_id):
     try:
         data = request.get_json()

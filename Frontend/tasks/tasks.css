@@ -41,7 +41,7 @@ button {
 input {
     padding: 8px;
     flex-grow: 1; /* Allow input to take up remaining space */
-
+    border-radius: 8px;
 }
 .form-group button {
     padding: 8px;
