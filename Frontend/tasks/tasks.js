@@ -64,7 +64,7 @@ function addTask(data) {
 function updateTask(task_id, data) {
     console.log('Updating task:', task_id, data);
         // Відправляємо дані на сервер для додавання завдання
-    fetch(`/api/tasks/update/${task_id}`, {
+    fetch(`/api/tasks/${task_id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ function loadUpdateForm(task_id) {
 }
 
 function deleteTask(task_id) {
-    fetch(`/api/tasks/delete/${task_id}`, {
+    fetch(`/api/tasks/${task_id}`, {
         method: 'DELETE',
     })
         .then(response => response.json())
