@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="add-note-section">
+        <h2>Add Note</h2>
+        <form id="note-form">
+            <input type="hidden" id="id" readonly>
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="task" placeholder="Task" required>
+            <input type="text" id="status" placeholder="Status" required>
+            <input type="datetime-local" id="date_time" placeholder="Time" required>
+            <button type="submit">Add or Update Note</button>
+        </form>
+
+        <form id="note-form-delete">
+            <input type="number" id="note_id" placeholder="Note id" required>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+
+    <h1>Notes List</h1>
+    <table id="notes-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="notes-list">
+            <!-- Сюди буде вставлено список завдань -->
+        </tbody>
+    </table>
+
+    <!-- Підключення скрипта note.js -->
+    <script src="mark/notes.js"></script>
+</body>
+</html>
