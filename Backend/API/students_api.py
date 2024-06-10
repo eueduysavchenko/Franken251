@@ -44,3 +44,16 @@ def add_or_update_student():
         'id': student.id, 'group': student.group, 'first_name': student.first_name,
         'last_name': student.last_name, 'score': student.score
     }), 200 if student_id else 201
+
+
+# My code
+@students_api.route('/students/<int:student_id>', methods=['DELETE'])
+def delete_student(student_id):
+    # Спроба знайти існуючого студента за його ID
+    student = Student.get_or_none(Student.id == student_id)
+    if student:
+        # Видалення студента
+        student.delete_instance()
+        return jsonify({'message': 'Student deleted successfully'}), 200
+    return jsonify({'message': 'Student not found'}), 404
+
