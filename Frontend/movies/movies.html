@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="add-movie-section">
+        <h2>Add Movie</h2>
+        <form id="movie-form">
+            <input type="hidden" id="id" readonly>
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="director" placeholder="Director" required>
+            <input type="text" id="genre" placeholder="Genre" required>
+            <input type="number" id="year_released" placeholder="Year" required>
+            <input type="number" id="rating" placeholder="Rating" required>
+            <button type="submit">Add Movie</button>
+        </form>
+    </div>
+
+    <h1>Movies List</h1>
+    <table id="movies-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Director</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Rating</th>
+                <th>Buttons</th>
+            </tr>
+        </thead>
+        <tbody id="movies-list">
+        </tbody>
+    </table>
+
+    <script src="movies/movies.js"></script>
+</body>
+</html>
