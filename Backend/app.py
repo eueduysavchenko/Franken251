@@ -79,3 +79,6 @@ def send_js(path):
 # Запуск сервера в режимі тестування
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
+
+
+# MykhailoZhuravel_api
