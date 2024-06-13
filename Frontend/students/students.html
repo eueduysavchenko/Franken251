@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teachers List</title>
+    <title>Students List</title>
     <style>
         table {
             border-collapse: collapse;
@@ -20,43 +20,36 @@
     </style>
 </head>
 <body>
-    <div class="add-teacher-section">
-        <h2>Add Teacher</h2>
-        <form id="teacher-form">
+    <div class="add-student-section">
+        <h2>Add Student</h2>
+        <form id="student-form">
             <input type="hidden" id="id" readonly>
             <input type="text" id="group" placeholder="Group" required>
             <input type="text" id="first_name" placeholder="First Name" required>
             <input type="text" id="last_name" placeholder="Last Name" required>
-<<<<<<< HEAD:Frontend/teachers/teachers.html
-            <button type="submit">Add or Update Teacher</button>
-=======
             <input type="number" id="score" placeholder="Score" required>
             <button type="submit">Add Student</button>
->>>>>>> main:Frontend/students/students.html
         </form>
     </div>
 
-    <h1>Teachers List</h1>
-    <table id="teachers-table">
+    <h1>Students List</h1>
+    <table id="students-table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Group</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-<<<<<<< HEAD:Frontend/teachers/teachers.html
-=======
                 <th>Score</th>
                 <th>Buttons</th>
->>>>>>> main:Frontend/students/students.html
             </tr>
         </thead>
-        <tbody id="teachers-list">
+        <tbody id="students-list">
             <!-- Сюди буде вставлено список студентів -->
         </tbody>
     </table>
 
-    <!-- Підключення скрипта teachers.js -->
-    <script src="teachers.js"></script>
+    <!-- Підключення скрипта students.js -->
+    <script src="students/students.js"></script>
 </body>
 </html>
