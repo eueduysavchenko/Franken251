@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cars List</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid rgb(0, 0, 0);
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #ad4e4e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="add-cars-section">
+      <h2>Add Car</h2>
+      <form id="cars-form">
+        <input type="hidden" id="id" readonly />
+        <input type="text" id="factory" placeholder="Factory" required />
+        <input
+          type="text"
+          id="models_name"
+          placeholder="Models Name"
+          required
+        />
+        <input
+          type="text"
+          id="country_name"
+          placeholder="Country Name"
+          required
+        />
+        <input
+          type="number"
+          id=" engine_size"
+          placeholder="Engine Size"
+          required
+        />
+        <button type="submit">Add or Update Cars</button>
+      </form>
+    </div>
+
+    <h1>Cars List</h1>
+    <table id="cars-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Factory</th>
+          <th>Models Name</th>
+          <th>Country Name</th>
+          <th>Engine Size</th>
+        </tr>
+      </thead>
+      <tbody id="cars-list">
+        <!-- Сюди буде вставлено список авто -->
+      </tbody>
+    </table>
+
+    <!-- Підключення скрипта cars.js -->
+    <script src="students/students.js"></script>
+  </body>
+</html>

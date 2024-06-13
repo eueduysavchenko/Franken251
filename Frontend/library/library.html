@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="add-book-section">
+        <h2>Add book</h2>
+        <form id="book-form">
+            <input type="text" id="author" placeholder="Author" required>
+            <input type="text" id="title" placeholder="Title" required>
+            <button type="submit">Add book</button>
+        </form>
+    </div>
+
+    <h1>Books</h1>
+    <table id="books-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="books-list">
+            <!-- Сюди буде вставлено список книжок -->
+        </tbody>
+    </table>
+
+    <!-- Підключення скрипта library.js -->
+    <script src="library/library.js"></script>
+</body>
+</html>
