@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+<<<<<<< HEAD:Frontend/teachers/teachers.js
+    // Функція для завантаження та відображення списку вчителів
+    function loadTeachers() {
+        fetch('/api/teachers')
+=======
     function deleteStudent(studentId){
         // Відправляємо запит DELETE на сервер для видалення студента за його ID
         fetch(`/api/students/${studentId}`, {
@@ -41,10 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функція для завантаження та відображення списку студентів
     function loadStudents() {
         fetch('/api/students')
+>>>>>>> main:Frontend/students/students.js
             .then(response => response.json())
-            .then(students => {
-                const studentsList = document.getElementById('students-list');
+            .then(teachers => {
+                const teachersList = document.getElementById('teachers-list');
                 // Очищаємо список перед додаванням нових даних
+<<<<<<< HEAD:Frontend/teachers/teachers.js
+                teachersList.innerHTML = '';
+                teachers.forEach(teacher => {
+                    const row = teachersList.insertRow();
+                    row.innerHTML = `
+                        <td>${teacher.id}</td>
+                        <td>${teacher.group}</td>
+                        <td>${teacher.first_name}</td>
+                        <td>${teacher.last_name}</td>
+=======
                 studentsList.innerHTML = '';
                 students.forEach(student => {
                     const row = studentsList.insertRow();
@@ -60,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <input class="delete-${student.id}" type="button" value="Delete" data-student-id="${student.id}">
                             <input class="update-${student.id}" type="button" value="Update" data-student-id="${student.id}">                            
                         </td>
+>>>>>>> main:Frontend/students/students.js
                     `;
                      // Додаємо обробник події click до кнопки Delete                    
                     const deleteButton = row.querySelector(`.delete-${student.id}`);
@@ -91,29 +108,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Викликаємо функцію для ініціалізації списку студентів
-    loadStudents();
+    // Викликаємо функцію для ініціалізації списку вчителів
+    loadTeachers();
 
     // EventHandler для форми додавання нового студента
-    document.getElementById('student-form').addEventListener('submit', function(event) {
+    document.getElementById('teacher-form').addEventListener('submit', function(event) {
         event.preventDefault();
 
         const id = document.getElementById('id').value;  // Отримуємо ID, якщо воно вказано
         const group = document.getElementById('group').value;
         const firstName = document.getElementById('first_name').value;
         const lastName = document.getElementById('last_name').value;
-        const score = document.getElementById('score').value;
 
         const data = {
             id: id,
             group: group,
             first_name: firstName,
             last_name: lastName,
-            score: score
         };
 
-        // Відправляємо дані на сервер для додавання або оновлення студента
-        fetch('/api/students', {
+        // Відправляємо дані на сервер для додавання або оновлення вчителя
+        fetch('/api/teachers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -122,12 +137,12 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(() => {
-            // Очищаємо форму після додавання студента
-            document.getElementById('student-form').reset();
+            // Очищаємо форму після додавання вчителя
+            document.getElementById('teacher-form').reset();
             // Видаляємо значення ID для уникнення непередбачуваної поведінки
             document.getElementById('id').value = '';
-            // Оновлюємо список студентів на сторінці
-            loadStudents();
+            // Оновлюємо список вчителів на сторінці
+            loadTeachers();
         })
         .catch(error => console.error('Error:', error));
     });

@@ -2,18 +2,18 @@ from flask import Blueprint, send_from_directory, abort
 import os
 
 # Ініціалізація Blueprint для навігації браузером
-students_route = Blueprint('students_route', __name__, static_folder='../../Frontend/students')
+teachers_route = Blueprint('teachers_route', __name__, static_folder='../../Frontend/teachers')
 
 
-# Доступ до students.html
-@students_route.route('/students')
-def students_page():
-    print(students_route.static_folder)
-    return send_from_directory(students_route.static_folder, 'students.html')
+# Доступ до teachers.html
+@teachers_route.route('/teachers')
+def teachers_page():
+    print(teachers_route.static_folder)
+    return send_from_directory(teachers_route.static_folder, 'teachers.html')
 
 
 # Забезпечення доступу браузера до статичних даних (image, *.js, тощо)
-@students_route.route('/students/<path:path>')
+@teachers_route.route('/teachers/<path:path>')
 def send_js(path):
     # Перевірка на недопустимі символи у шляху
     if '..' in path or path.startswith('/'):
@@ -21,11 +21,11 @@ def send_js(path):
         abort(404)
 
     # Формуємо абсолютний шлях до файлу для безпечного доступу
-    safe_path = os.path.abspath(os.path.join(students_route.static_folder, path))
+    safe_path = os.path.abspath(os.path.join(teachers_route.static_folder, path))
 
     # Перевіряємо, чи знаходиться файл дійсно у дозволеній директорії
-    if not safe_path.startswith(os.path.abspath(students_route.static_folder)):
+    if not safe_path.startswith(os.path.abspath(teachers_route.static_folder)):
         abort(404)
 
     # Відправляємо файл за безпечним шляхом
-    return send_from_directory(students_route.static_folder, path)
+    return send_from_directory(teachers_route.static_folder, path)
