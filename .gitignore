@@ -6,6 +6,9 @@ misc.xml
 __pycache__/
 *.py[cod]
 *$py.class
+/Backend/API/__pycache__
+.history/
+
 
 # C extensions
 *.so
