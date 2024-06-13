@@ -14,6 +14,10 @@ from API.tasks_route import tasks_route
 from Models.library_model import initialize_library_db
 from API.library_api import library_api as library_api
 from API.library_route import library_route
+# Імпорт необхідних файлів для Worktops
+from Models.worktop_model import initialize_worktops_db
+from API.worktops_api import worktop_api as worktops_api
+from API.worktops_route import worktops_route
 
 # Ініціалізація app та шляху до статичних даних
 app = Flask(__name__, static_folder='../Frontend')
@@ -25,6 +29,7 @@ CORS(app)
 initialize_students_db()
 initialize_tasks_db()
 initialize_library_db()
+initialize_worktops_db()
 
 # Реєстрація Blueprints для API та Навігції FrontEnd в браузері
 app.register_blueprint(students_api, url_prefix='/api')
@@ -33,6 +38,8 @@ app.register_blueprint(tasks_api, url_prefix='/api')
 app.register_blueprint(tasks_route)
 app.register_blueprint(library_api, url_prefix='/api')
 app.register_blueprint(library_route)
+app.register_blueprint(worktops_api, url_prefix='/api')
+app.register_blueprint(worktops_route)
 
 
 # Точка входу, index.html
@@ -75,6 +82,15 @@ def send_js(path):
             abort(404)
         # Відправляємо файл за безпечним шляхом
         return send_from_directory(library_route.static_folder, path)
+
+    if path.startswith('/worktops'):
+        # Формуємо абсолютний шлях до файлу для безпечного доступу
+        safe_path = os.path.abspath(os.path.join(worktops_route.static_folder, path))
+        # Перевіряємо, чи знаходиться файл дійсно у дозволеній директорії
+        if not safe_path.startswith(os.path.abspath(worktops_route.static_folder)):
+            abort(404)
+        # Відправляємо файл за безпечним шляхом
+        return send_from_directory(worktops_route.static_folder, path)
 
 # Запуск сервера в режимі тестування
 if __name__ == '__main__':
