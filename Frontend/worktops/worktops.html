@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container, .quests-container {
+            margin-bottom: 20px;
+        }
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .form-row {
+            margin-bottom: 10px;
+        }
+        .form-row label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-row input, .form-row select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .table-button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .table-button-cell {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div id="form-title" class="form-title">Add Quest</div>
+        <form id="quest-form">
+            <input type="hidden" id="quest-id">
+            <div class="form-row">
+                <label for="person">Person</label>
+                <input type="text" id="person" required>
+            </div>
+            <div class="form-row">
+                <label for="title">Title</label>
+                <input type="text" id="title" required>
+            </div>
+            <div class="form-row">
+                <label for="description">Description</label>
+                <input type="text" id="description" required>
+            </div>
+            <div class="form-row">
+                <label for="status">Status</label>
+                <select id="status" required>
+                    <option value="">Select Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <div class="button-container">
+                <button type="button" id="add-button" onclick="submitForm('add')">Add Quest</button>
+                <button type="button" id="update-button" onclick="submitForm('update')" style="display: none;">Update Quest</button>
+                <button type="button" id="delete-button" onclick="submitForm('delete')" style="display: none;">Delete Quest</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="quests-container">
+        <h2>Quests List</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Person</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="quests-list">
+                    <!-- Quests will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="worktops/worktops.js"></script>
+</body>
+</html>
